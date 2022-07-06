@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import {
   Title,
   Text,
@@ -16,13 +18,20 @@ import {
   Header,
   Box,
 } from '@mantine/core';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import useStyles from './HomePage.styles';
 import { ArrowNarrowRight, BrandGithub } from 'tabler-icons-react';
 import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
 
-function FeatureCard(props) {
+interface CardProps {
+  bg: string;
+  title: ReactNode;
+  body: ReactNode;
+}
+
+function FeatureCard(props: CardProps) {
   const { classes } = useStyles();
+  const { bg, title, body } = props;
   return (
     <Box
       component="div"
@@ -32,7 +41,7 @@ function FeatureCard(props) {
         const textColor =
           theme.colorScheme === 'dark' ? theme.colors.gray[1] : theme.colors.gray[8];
         return {
-          backgroundColor: theme.colors[props.bg][bgInd],
+          backgroundColor: theme.colors[bg][bgInd],
           color: textColor,
           borderRadius: '12px',
           height: '100%',
@@ -43,13 +52,13 @@ function FeatureCard(props) {
         <Card.Section>
           <Center>
             <Title order={2} sx={classes.cardTitle} align="center">
-              {props.title}
+              {title}
             </Title>
           </Center>
         </Card.Section>
         <Card.Section>
           <Center p={20}>
-            <Text size="xl">{props.body}</Text>
+            <Text size="xl">{body}</Text>
           </Center>
         </Card.Section>
       </Card>
