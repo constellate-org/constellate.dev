@@ -50,6 +50,7 @@ export default createStyles((theme) => {
             backgroundColor: "inherit",
             color: "inherit",
             fontSize: 16,
+            borderColor: "inherit",
         },
     })
 });
