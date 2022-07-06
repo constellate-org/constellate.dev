@@ -17,10 +17,11 @@ import {
   Center,
   Header,
   Box,
+  MediaQuery,
 } from '@mantine/core';
 import React, { ReactNode } from 'react';
 import useStyles from './HomePage.styles';
-import { ArrowNarrowRight, BrandGithub } from 'tabler-icons-react';
+import { ArrowNarrowDown, ArrowNarrowRight, BrandGithub } from 'tabler-icons-react';
 import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
 
 interface CardProps {
@@ -98,11 +99,11 @@ export function HomePage() {
       </Container>
       <Container fluid m={20}>
         <Grid>
-          <Grid.Col span={5}>
+          <Grid.Col lg={5} sm={12}>
             <Image src="/notebook-light.png" alt="Notebook" sx={classes.lightImg} />
             <Image src="/notebook-dark.png" alt="Notebook" sx={classes.darkImg} />
           </Grid.Col>
-          <Grid.Col span={2}>
+          <Grid.Col lg={2} sm={12}>
             <Center sx={{ height: '100%', marginBottom: 'auto', marginTop: 'auto' }}>
               <ThemeIcon
                 variant="outline"
@@ -110,13 +111,18 @@ export function HomePage() {
                 size={128}
                 sx={{ border: 'none', height: '100%', marginBottom: 'auto', marginTop: 'auto' }}
               >
-                <ArrowNarrowRight size={128} style={{ strokeWidth: '1px' }} />
+                <MediaQuery smallerThan="lg" styles={{ display: 'none' }}>
+                  <ArrowNarrowRight size={128} style={{ strokeWidth: '1px' }} />
+                </MediaQuery>
+                <MediaQuery largerThan="lg" styles={{ display: 'none' }}>
+                  <ArrowNarrowDown size={128} style={{ strokeWidth: '1px' }} />
+                </MediaQuery>
               </ThemeIcon>
             </Center>
           </Grid.Col>
-          <Grid.Col span={5}>
-            <Image src="/constellate-light.png" alt="Notebook" sx={classes.lightImg} />
-            <Image src="/constellate-dark.png" alt="Notebook" sx={classes.darkImg} />
+          <Grid.Col lg={5} sm={12}>
+            <Image src="/constellate-light.png" alt="Constellation" sx={classes.lightImg} />
+            <Image src="/constellate-dark.png" alt="Constellation" sx={classes.darkImg} />
           </Grid.Col>
         </Grid>
       </Container>
@@ -127,14 +133,14 @@ export function HomePage() {
           </Title>
         </Text>
         <Grid justify="space-around">
-          <Grid.Col span={3}>
+          <Grid.Col lg={3} md={4} sm={6}>
             <FeatureCard
               title="More data, less web development"
               bg="blue"
               body="No need for separate Python and JS codebases. Just write the Python, and Constellate will handle the rest."
             />
           </Grid.Col>
-          <Grid.Col span={3}>
+          <Grid.Col lg={3} md={4} sm={6}>
             <FeatureCard
               title="Supporting your favorite Python packages"
               bg="teal"
@@ -150,7 +156,7 @@ export function HomePage() {
               }
             />
           </Grid.Col>
-          <Grid.Col span={3}>
+          <Grid.Col lg={3} md={4} sm={6}>
             <FeatureCard
               title="Perfectly balanced, as all things should be"
               bg="indigo"
